@@ -12,9 +12,12 @@ const Home = () => {
   const [list,setList] = useState([])
   const parametroUrl = 'https://jsonplaceholder.typicode.com/users'
 
-  useEffect(() =>{
+  useEffect(() => {
     axios(parametroUrl)
-    .then(res => setList(res.data))
+    .then(res => {
+      console.log(res.data)
+      setList(res.data)
+    })
   },[])
 
   return (
@@ -23,6 +26,8 @@ const Home = () => {
       <div className='card-grid'>
         {list.map((odonto) => <Card odonto={odonto} key={odonto.id} />)}
       </div>
+   
+
     </main>
   )
 }

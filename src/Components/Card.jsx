@@ -2,16 +2,23 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import doctor_imagen from '../img/doctor.jpg'
 
+
 const Card = ({ odonto }) => {
 
   const addFav = () => {
     // Aqui iria la logica para agregar la Card en el localStorage
+    var odontoList = JSON.parse(localStorage.getItem('odonto'))
+    if (!odontoList) odontoList = []
+    odontoList.push(odonto)
+    localStorage.setItem('odonto', JSON.stringify(odontoList))
   }
 
   return (
+
     <div className="card">
-      <Link to={'/detail'}>
-      <img src={doctor_imagen} alt="beer-detail" width="200" />
+
+      <Link to={'/detail/' + odonto.id}>
+        <img src={doctor_imagen} alt="beer-detail" width="200" />
         <h3>{odonto.name}</h3>
         <h2>{odonto.username}</h2>
       </Link>

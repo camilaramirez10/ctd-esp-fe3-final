@@ -15,7 +15,7 @@ const Navbar = () => {
         <Link to='/'><h3>Home</h3></Link>
         <Link to='/contact'><h3>Contacto</h3></Link>
         <Link to='/favs'><h3>Favs</h3></Link>
-      </nav>
+       </nav>
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
       <button className="boton-theme" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>Cambiar Tema</button>
     </nav>
