@@ -7,10 +7,10 @@ import whap from '../img/ico-whatsapp.png'
 import tiktok from '../img/ico-tiktok.png'
 
 const Footer = () => {
-  const {theme, setTheme} = useContextGlobal()
+  const {state} = useContextGlobal()
 
   return (
-    <footer id={theme}>
+    <footer id={state.theme}>
         <p>Powered by</p>
         <img src={dh_imagen} alt='DH-logo' />
         <div>

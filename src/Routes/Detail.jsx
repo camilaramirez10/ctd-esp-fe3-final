@@ -7,7 +7,8 @@ import axios from 'axios'
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
-  const {theme, setTheme} = useContextGlobal()
+  const {state} = useContextGlobal()
+
   const [odonto,setOdonto] = useState({})
   const params = useParams()
   console.log(params)
@@ -24,7 +25,7 @@ const Detail = () => {
   }, [])
 
   return (
-    <div id={theme}>
+    <div id={state.theme}>
       <h1 class="titulo">Detalle Odontologo</h1>
       <table>
         <tr>

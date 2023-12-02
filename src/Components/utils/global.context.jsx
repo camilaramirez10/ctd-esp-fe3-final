@@ -1,23 +1,33 @@
 //utiliza useReducer en cambio de usestate
-import { createContext, useContext, useState } from "react";
-
+import { createContext, useContext, useReducer, useEffect } from "react";
+import axios from 'axios'
+import { reducer } from "../reducers/reducer"
 
 const ContextGlobal = createContext();
 
-const initialStates = {
+const initialState = {
     list: [],
-    favs: []
-
+    favs: [],
+    theme: 'light'
 }
 
 //este es el componente ContextProvider
 const ContextProvider = ({ children }) => {
+
+  const [state, dispatch] = useReducer(reducer, initialState)
+
   //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
-  const [theme, setTheme] = useState('light')
+
+  const parametroUrl = 'https://jsonplaceholder.typicode.com/users'
+
+  useEffect(() => {
+    axios(parametroUrl)
+    .then(res => dispatch({type: 'GET_CHARACTERS', payload: res.data}))
+  },[])
 
   //el provider lo que hace es atribuirle el estado que creamos en el contexto
   return (
-    <ContextGlobal.Provider value={{theme, setTheme}}>
+    <ContextGlobal.Provider value={{state, dispatch}}>
       {children}
     </ContextGlobal.Provider>
   );
